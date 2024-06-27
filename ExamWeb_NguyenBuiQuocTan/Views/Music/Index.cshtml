@@ -1,0 +1,50 @@
+﻿@model List<DiaNhac>
+<partial name="_Notification" />
+<div class="row">
+    <div class="col-md-6">
+        <h2>LIST Book</h2>
+    </div>
+    <div class="col-md-6 text-right">
+        <a asp-action="Add" class="btn btn-primary">
+            <i class="bi bi-plus-circle-fill"></i> Them Sach Moi
+        </a>
+    </div>
+</div>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Tựa CD</th>
+            <th>Thể Loại</th>
+            <th> Giá Bán</th>
+            <th> Số Lượng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td>@x.TuaCD</td>
+                <td>
+                @if(x.TrongNuoc ==true)
+                {
+                    <a>Việt Nam</a>
+                } else{
+                <a>Nước Ngoài</a>}   
+               </td>
+                <td>@x.GiaBan</td>
+                <td>@x.SoLuong</td>
+                <td>
+                    <a asp-action="Update" asp-route-id="@x.Id" class="btn btn-success">
+                        <i class="bi bi-pencil-square"></i> Edit
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@x.Id" class="btn btn-danger">
+                        <i class="bi bi-trash"></i> Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<h5>
+    Co <b>@ViewBag.SUm</b>
+</h5>
